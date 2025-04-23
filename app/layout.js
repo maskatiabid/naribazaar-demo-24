@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";  // Importing Inter font
-import "./globals.css";  // Your global CSS file
+import "../styles/globals.css";  // Global CSS file
 
 // Setting up the Inter font
 const inter = Inter({
   subsets: ["latin"],  // Using the latin subset for characters
-  weight: ["400", "700"],  // Defining available font weights
+  weight: ["400", "700"],  // Font weights
 });
 
 export const metadata = {
@@ -16,10 +16,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* You can add any custom meta tags here if needed */}
+        {/* You can add custom meta tags here */}
       </head>
-      <body className={inter.className}> {/* Apply the Inter font globally */}
-        {children} {/* Your page content will go here */}
+      <body className={inter.className}> {/* Apply Inter font */}
+        {children}
       </body>
     </html>
   );
