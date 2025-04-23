@@ -1,18 +1,25 @@
-/* Tailwind CSS base styles */
+/* styles/globals.css */
+
+/* Import Tailwind's base styles */
 @tailwind base;
+
+/* Import Tailwind's components */
 @tailwind components;
+
+/* Import Tailwind's utilities */
 @tailwind utilities;
 
 /* Custom global styles */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;  /* Make sure Inter font is applied */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Ensure the full height of the page */
 html, body {
   height: 100%;
 }
 
-/* Add more custom styles here */
+/* Additional styles can go here */
