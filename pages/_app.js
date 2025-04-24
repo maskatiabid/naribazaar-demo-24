@@ -6,4 +6,6 @@ function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;  // Renders the page content
 }
 
-export default MyApp;
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}

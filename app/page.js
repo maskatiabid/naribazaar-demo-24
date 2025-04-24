@@ -1,11 +1,8 @@
-// app/page.js (or app/home.js)
-
 export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome to NariBazaar!</h1>
-      <p>Explore amazing products by women entrepreneurs.</p>
-      {/* Additional page-specific content can go here */}
-    </div>
+    <section style={{ padding: '2rem' }}>
+      <h1>Welcome to NariBazaar</h1>
+      <p>This is the homepage for our women entrepreneur platform.</p>
+    </section>
   );
 }

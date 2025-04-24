@@ -10,16 +10,19 @@
 @tailwind utilities;
 
 /* Custom global styles */
+html,
 body {
-  font-family: 'Inter', sans-serif;  /* Make sure Inter font is applied */
+  height: 100%;                /* Ensure full height */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+  background-color: #ffffff;   /* Optional: clean white background */
+  color: #333333;              /* Optional: readable dark text */
 }
 
-/* Ensure the full height of the page */
-html, body {
-  height: 100%;
+/* Global link styling (optional) */
+a {
+  text-decoration: none;
+  color: inherit;
 }
-
-/* Additional styles can go here */
