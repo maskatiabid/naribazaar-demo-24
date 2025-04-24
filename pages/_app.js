@@ -1,6 +1,7 @@
-import '../styles/styles.css';  // Import global styles
-import Header from '../components/Header'; // Import global Header component
-import Footer from '../components/Footer'; // Import global Footer component
+// pages/_app.js
+import '../styles/styles.css';  // ✅ Import global styles first
+import Header from '../components/Header'; // Global Header
+import Footer from '../components/Footer'; // Global Footer
 
 function MyApp({ Component, pageProps }) {
   return (

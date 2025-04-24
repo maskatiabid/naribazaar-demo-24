@@ -1,5 +1,7 @@
 'use client';
 
+import '../styles/styles.css';  // ✅ Must come after 'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Carousel } from 'react-responsive-carousel';
