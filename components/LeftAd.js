@@ -1,8 +1,8 @@
-// components/LeftAd.js
 export default function LeftAd() {
     return (
-      <div className="fixed left-0 top-24 w-28">
-        <img src="/ads/left-ad.jpg" alt="Left Ad" className="w-full h-auto" />
+      <div className="h-full p-2">
+        <img src="/left-ad.jpg" alt="Left Ad" className="w-full h-auto rounded-lg shadow-md" />
       </div>
     );
   }
+  

@@ -5,15 +5,26 @@ import RightAd from '../components/RightAd';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen">
+    <>
       <Header />
-      <LeftAd />
-      <RightAd />
-      <div className="text-center p-10">
-        <h1 className="text-4xl font-bold mb-4">Welcome to NariBazaar!</h1>
-        <p className="text-lg text-gray-700">Empowering women entrepreneurs 🌸</p>
+      <div className="flex min-h-screen">
+        {/* Left Ad */}
+        <div className="w-1/6 hidden lg:block">
+          <LeftAd />
+        </div>
+
+        {/* Main Content */}
+        <main className="w-full lg:w-4/6 p-6 text-center">
+          <h1 className="text-4xl font-bold mb-4">Welcome to NariBazaar!</h1>
+          <p className="text-lg text-gray-700">Empowering women entrepreneurs 🌸</p>
+        </main>
+
+        {/* Right Ad */}
+        <div className="w-1/6 hidden lg:block">
+          <RightAd />
+        </div>
       </div>
       <Footer />
-    </main>
+    </>
   );
 }
