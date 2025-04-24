@@ -1,8 +1,6 @@
 "use client"; // Add this at the top to mark this as a client component
 
 import { useState } from 'react';
-import Image from 'next/image';
-import logo from '../public/logo.png'; // Assuming you have a logo in public
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,7 +10,7 @@ const Header = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           {/* Logo */}
-          <Image src={logo} alt="NariBazaar Logo" width={120} height={40} />
+          <img src="/logo.png" alt="NariBazaar Logo" width={120} height={40} />
         </div>
 
         {/* Hamburger icon for mobile view */}
