@@ -1,17 +1,8 @@
-// components/Header.js
-
 export default function Header() {
     return (
-      <header className="bg-pink-600 text-white p-4 flex items-center justify-between">
-        <div className="text-2xl font-bold">
-          <a href="/">NariBazaar</a>
-        </div>
-        <nav className="space-x-6">
-          <a href="/" className="hover:text-pink-300">Home</a>
-          <a href="/explore" className="hover:text-pink-300">Explore</a>
-          <a href="/register" className="hover:text-pink-300">Register as Seller</a>
-          <a href="/faq" className="hover:text-pink-300">FAQ</a>
-        </nav>
+      <header className="bg-pink-100 text-center p-4 shadow-md border-b border-pink-200">
+        <h2 className="text-3xl font-bold text-pink-800">🌸 NariBazaar</h2>
+        <p className="text-sm text-gray-700 mt-1">A marketplace by and for women entrepreneurs</p>
       </header>
     );
   }
