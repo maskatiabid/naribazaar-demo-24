@@ -1,18 +1,22 @@
 // app/page.js
 
-import LeftAd from '../components/LeftAd';  // Adjust the import path if needed
-import RightAd from '../components/RightAd';  // Adjust the import path if needed
+import LeftAd from '../components/LeftAd';  // Import the LeftAd component
+import RightAd from '../components/RightAd';  // Import the RightAd component
 
 export default function Home() {
   return (
-    <main className="text-center p-10 pt-20"> {/* Adjust padding to avoid overlap with fixed ads */}
+    <main className="text-center p-10 pt-20"> {/* Add pt-20 for top padding */}
       <h1 className="text-4xl font-bold mb-4">Welcome to NariBazaar!</h1>
       <p className="text-lg text-gray-700">Empowering women entrepreneurs 🌸</p>
-      
-      {/* Add your other content here */}
-      
-      <LeftAd /> {/* Left ad component */}
-      <RightAd /> {/* Right ad component */}
+
+      {/* Add more content below */}
+      <div className="mt-8">
+        {/* You can add more content like product sections, testimonials, etc. */}
+      </div>
+
+      {/* Insert the Left and Right Ad components */}
+      <LeftAd />
+      <RightAd />
     </main>
   );
 }
