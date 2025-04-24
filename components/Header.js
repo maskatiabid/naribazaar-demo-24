@@ -1,4 +1,4 @@
-'use client'; // Mark this file as a Client Component
+'use client'; // Ensure this is marked as a Client Component
 
 import { useState } from 'react';
 import Image from 'next/image';

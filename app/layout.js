@@ -1,18 +1,19 @@
-import Header from '../components/Header';
+'use client'; // Ensure layout.js is treated as a Client Component
 
-const Home = () => {
+import Header from '../components/Header'; // Assuming header is in components
+
+export default function Layout({ children }) {
   return (
     <div>
-      {/* Header */}
+      {/* Header section */}
       <Header />
-
-      {/* Main Content */}
-      <main className="text-center mt-10">
-        <h1 className="text-4xl font-bold text-gray-900">Welcome to NariBazaar!</h1>
-        <p className="text-xl mt-4 text-gray-700">Empowering women entrepreneurs 🌸</p>
+      
+      {/* Main content */}
+      <main className="min-h-screen bg-gray-100 p-4">
+        {children}
       </main>
+      
+      {/* Footer can go here */}
     </div>
   );
-};
-
-export default Home;
+}
