@@ -1,19 +1,14 @@
-'use client'; // Ensure layout.js is treated as a Client Component
+'use client';
+import './globals.css';
+import Header from '../components/Header';
 
-import Header from '../components/Header'; // Assuming header is in components
-
-export default function Layout({ children }) {
+export default function RootLayout({ children }) {
   return (
-    <div>
-      {/* Header section */}
-      <Header />
-      
-      {/* Main content */}
-      <main className="min-h-screen bg-gray-100 p-4">
-        {children}
-      </main>
-      
-      {/* Footer can go here */}
-    </div>
+    <html lang="en">
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
+    </html>
   );
 }
