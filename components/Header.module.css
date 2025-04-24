@@ -1,25 +1,32 @@
-/* Header.module.css */
+/* components/Header.module.css */
+
 .header {
-    background-color: #f8a9b7;
+    background-color: #f0f0f0;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .logo {
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 20px;
+    color: #333;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
   }
   
   .nav a {
-    margin-left: 20px;
     text-decoration: none;
-    color: #000;
-    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
   }
   
   .nav a:hover {
-    text-decoration: underline;
+    color: #0070f3;
   }
   
