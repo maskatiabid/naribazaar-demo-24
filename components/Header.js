@@ -1,50 +1,88 @@
-// components/Header.js
-'use client';
-
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <header className="flex items-center justify-between px-4 py-2 border-b shadow-sm">
-      <div className="flex items-center space-x-3">
-        <Image src="/logo.png" alt="NariBazaar Logo" width={40} height={40} />
-        <h1 className="text-xl font-bold">NariBazaar</h1>
+    <header className="bg-white shadow-md p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Logo Section */}
+        <div className="logo-container flex items-center">
+          <Image 
+            src="/logo.png" 
+            alt="Logo" 
+            width={100} 
+            height={100} 
+            priority 
+          />
+        </div>
+
+        {/* Hamburger Icon for Mobile */}
+        <div className="lg:hidden flex items-center">
+          <button onClick={toggleMenu} className="text-black">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Navigation Bar (Desktop) */}
+        <nav
+          className={`${
+            isMenuOpen ? 'block' : 'hidden'
+          } lg:flex space-x-4 items-center`}
+        >
+          <Link href="/" className="text-black hover:text-gray-700">
+            Home
+          </Link>
+          <Link href="/products" className="text-black hover:text-gray-700">
+            Products
+          </Link>
+          <Link href="/about" className="text-black hover:text-gray-700">
+            About
+          </Link>
+          <Link href="/contact" className="text-black hover:text-gray-700">
+            Contact
+          </Link>
+        </nav>
       </div>
 
-      {/* Desktop Menu */}
-      <nav className="hidden md:flex space-x-4 text-purple-700 font-medium">
-        <Link href="/explore">Explore Products</Link>
-        <Link href="/register">Become a Seller</Link>
-        <Link href="/add-product">Add Product</Link>
-        <Link href="/about">About Us</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/contact">Contact Us</Link>
-      </nav>
-
-      {/* Hamburger for Mobile */}
-      <button
-        className="md:hidden text-pink-600"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <Menu size={28} />
-      </button>
-
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white border-t shadow-md flex flex-col items-start px-4 py-3 space-y-2 text-purple-700 font-medium md:hidden z-50">
-          <Link href="/explore">Explore Products</Link>
-          <Link href="/register">Become a Seller</Link>
-          <Link href="/add-product">Add Product</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/login">Login</Link>
-          <Link href="/contact">Contact Us</Link>
-        </div>
-      )}
+      <div
+        className={`${
+          isMenuOpen ? 'block' : 'hidden'
+        } lg:hidden bg-white shadow-md p-4`}
+      >
+        <Link href="/" className="block py-2 text-black hover:text-gray-700">
+          Home
+        </Link>
+        <Link href="/products" className="block py-2 text-black hover:text-gray-700">
+          Products
+        </Link>
+        <Link href="/about" className="block py-2 text-black hover:text-gray-700">
+          About
+        </Link>
+        <Link href="/contact" className="block py-2 text-black hover:text-gray-700">
+          Contact
+        </Link>
+      </div>
     </header>
   );
 };
