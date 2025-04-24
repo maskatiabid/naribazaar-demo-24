@@ -1,18 +1,14 @@
-import LeftAd from '../components/LeftAd';  // Import the LeftAd component
-import RightAd from '../components/RightAd';  // Import the RightAd component
+// app/page.js
+
+import LeftAd from '../components/LeftAd';
+import RightAd from '../components/RightAd';
 
 export default function Home() {
   return (
-    <main className="text-center p-10 pt-24"> {/* Added more top padding */}
+    <main className="text-center p-10">
       <h1 className="text-4xl font-bold mb-4">Welcome to NariBazaar!</h1>
-      <p className="text-lg text-gray-700">Empowering women entrepreneurs 🌸</p>
-
-      {/* Add more content below */}
-      <div className="mt-8">
-        {/* More content */}
-      </div>
-
-      {/* Insert the Left and Right Ad components */}
+      <p className="text-lg text-gray-700 mb-8">Empowering women entrepreneurs 🌸</p>
+      {/* Left and Right Ads */}
       <LeftAd />
       <RightAd />
     </main>
