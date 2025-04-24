@@ -1,11 +1,8 @@
-// components/LeftAd.js
-
 export default function LeftAd() {
   return (
-    <div className="fixed top-1/4 left-0 w-32 h-48 bg-gray-200">
-      {/* Placeholder ad */}
+    <div className="fixed left-0 top-1/4 w-48 h-72 bg-gray-200">
       <img
-        src="https://via.placeholder.com/200x300?text=Left+Ad"
+        src="/ads/left-ad.jpg" // Path to the placeholder image
         alt="Left Ad"
         className="w-full h-full object-cover"
       />

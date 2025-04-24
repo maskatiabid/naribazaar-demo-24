@@ -1,11 +1,8 @@
-// components/RightAd.js
-
 export default function RightAd() {
   return (
-    <div className="fixed top-1/4 right-0 w-32 h-48 bg-gray-200">
-      {/* Placeholder ad */}
+    <div className="fixed right-0 top-1/4 w-48 h-72 bg-gray-200">
       <img
-        src="https://via.placeholder.com/200x300?text=Right+Ad"
+        src="/ads/right-ad.jpg" // Path to the placeholder image
         alt="Right Ad"
         className="w-full h-full object-cover"
       />
