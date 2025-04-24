@@ -1,92 +1,43 @@
-'use client'; // Ensure this is marked as a Client Component
-
+'use client';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo Section */}
-        <div className="logo-container flex items-center">
-          <Image 
-            src="/logo.png" 
-            alt="Logo" 
-            width={100} 
-            height={100} 
-            priority 
-          />
-        </div>
-
-        {/* Hamburger Icon for Mobile */}
-        <div className="lg:hidden flex items-center">
-          <button onClick={toggleMenu} className="text-black">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-
-        {/* Navigation Bar (Desktop) */}
-        <nav
-          className={`${
-            isMenuOpen ? 'block' : 'hidden'
-          } lg:flex space-x-4 items-center`}
-        >
-          <Link href="/" className="text-black hover:text-gray-700">
-            Home
-          </Link>
-          <Link href="/products" className="text-black hover:text-gray-700">
-            Products
-          </Link>
-          <Link href="/about" className="text-black hover:text-gray-700">
-            About
-          </Link>
-          <Link href="/contact" className="text-black hover:text-gray-700">
-            Contact
-          </Link>
-        </nav>
+    <header className="bg-white shadow-md px-6 py-4 flex items-center justify-between">
+      <div className="flex items-center space-x-4">
+        <Image src="/logo.png" alt="Logo" width={50} height={50} priority />
+        <span className="font-bold text-xl">NariBazaar</span>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`${
-          isMenuOpen ? 'block' : 'hidden'
-        } lg:hidden bg-white shadow-md p-4`}
+      <nav className="hidden md:flex space-x-6 text-gray-800">
+        <Link href="/">Home</Link>
+        <Link href="/products">Products</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
+      </nav>
+
+      <button
+        className="md:hidden flex flex-col space-y-1"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle Menu"
       >
-        <Link href="/" className="block py-2 text-black hover:text-gray-700">
-          Home
-        </Link>
-        <Link href="/products" className="block py-2 text-black hover:text-gray-700">
-          Products
-        </Link>
-        <Link href="/about" className="block py-2 text-black hover:text-gray-700">
-          About
-        </Link>
-        <Link href="/contact" className="block py-2 text-black hover:text-gray-700">
-          Contact
-        </Link>
-      </div>
+        <span className="w-6 h-0.5 bg-black"></span>
+        <span className="w-6 h-0.5 bg-black"></span>
+        <span className="w-6 h-0.5 bg-black"></span>
+      </button>
+
+      {menuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-md p-4 flex flex-col space-y-4 text-center md:hidden">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </div>
+      )}
     </header>
   );
-};
-
-export default Header;
+}
