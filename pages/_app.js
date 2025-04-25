@@ -1,11 +1,15 @@
 // pages/_app.js
 
-import '../styles/globals.css';  // Import global styles
+import Navbar from '../components/Navbar'; // Import Navbar component
+import '../styles/globals.css'; // Your global CSS file (make sure it's linked)
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;  // Renders the page content
+  return (
+    <div>
+      <Navbar /> {/* Navbar at the top */}
+      <Component {...pageProps} /> {/* This will render the current page */}
+    </div>
+  );
 }
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+export default MyApp;
