@@ -1,61 +1,22 @@
-.navbar {
-  background-color: #333;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  position: relative;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.logo a {
-  color: white;
-  font-size: 24px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
+/* You can still keep your custom styles below */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
-  position: relative;
-  padding: 10px 15px;
-}
-
-.nav-links a {
-  color: white;
+/* Optional custom styles */
+a {
   text-decoration: none;
-  font-size: 16px;
+  color: inherit;
 }
 
-.nav-links a:hover {
-  background-color: #555;
-  padding: 8px 12px;
-  border-radius: 5px;
-}
-
-.dropdown-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #333;
-  min-width: 180px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-
-.dropdown-content a {
-  padding: 12px 16px;
-  color: white;
-  text-decoration: none;
-}
-
-.dropdown-content a:hover {
-  background-color: #555;
+/* Example utility override or addition */
+button {
+  cursor: pointer;
 }
