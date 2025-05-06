@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Products</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .filters, .pagination {
+      margin-bottom: 20px;
+    }
+    .filters select {
+      margin-right: 10px;
+      padding: 5px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .product-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 10px;
+      background: #fff;
+      text-align: center;
+    }
+    .product-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .product-info {
+      margin-top: 10px;
+      text-align: left;
+    }
+    .product-info h4, .product-info p {
+      margin: 4px 0;
+    }
+    .pagination button {
+      padding: 6px 12px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Browse Products</h1>
+
+  <!-- Filter Section -->
+  <div class="filters">
+    <label for="category">Category: </label>
+    <select id="category">
+      <option value="all">All</option>
+      <option value="electronics">Electronics</option>
+      <option value="fashion">Fashion</option>
+      <option value="home">Home</option>
+    </select>
+
+    <label for="price">Price Range: </label>
+    <select id="price">
+      <option value="all">All</option>
+      <option value="low">Under ₹50</option>
+      <option value="medium">₹50 - ₹150</option>
+      <option value="high">Above ₹150</option>
+    </select>
+  </div>
+
+  <!-- Product List -->
+  <div id="product-list" class="product-list">
+    <!-- Dynamic Product Cards -->
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button id="prev-page">Previous</button>
+    <span id="page-number">Page 1</span>
+    <button id="next-page">Next</button>
+  </div>
+
+  <script>
+    // Example Product Data — replace with real data from backend
+    const products = [
+      {
+        id: 1,
+        brand: 'Apple',
+        name: 'iPhone 13',
+        description: 'The latest Apple iPhone with A15 chip and great camera.',
+        category: 'electronics',
+        price: 799,
+        image: 'https://via.placeholder.com/200x200?text=iPhone+13'
+      },
+      {
+        id: 2,
+        brand: 'Nike',
+        name: 'Air Max 90',
+        description: 'Classic Nike sneaker for everyday comfort and style.',
+        category: 'fashion',
+        price: 120,
+        image: 'https://via.placeholder.com/200x200?text=Nike+Air+Max'
+      },
+      {
+        id: 3,
+        brand: 'IKEA',
+        name: 'Lack Table',
+        description: 'Minimalist design table suitable for modern home spaces.',
+        category: 'home',
+        price: 45,
+        image: 'https://via.placeholder.com/200x200?text=Lack+Table'
+      },
+      // Add more products...
+    ];
+
+    let currentPage = 1;
+    const itemsPerPage = 20;
+    let filteredProducts = [...products];
+
+    const productList = document.getElementById('product-list');
+    const pageNumberDisplay = document.getElementById('page-number');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+    const categoryFilter = document.getElementById('category');
+    const priceFilter = document.getElementById('price');
+
+    // Summarize description in 10 words
+    function summarizeDescription(desc) {
+      return desc.split(' ').slice(0, 10).join(' ') + (desc.split(' ').length > 10 ? '...' : '');
+    }
+
+    function updateProductList() {
+      productList.innerHTML = '';
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = currentPage * itemsPerPage;
+      const pageProducts = filteredProducts.slice(startIndex, endIndex);
+
+      pageProducts.forEach(product => {
+        const item = document.createElement('div');
+        item.className = 'product-item';
+
+        item.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="product-info">
+            <h4><strong>${product.brand}</strong></h4>
+            <p><strong>${product.name}</strong></p>
+            <p>${summarizeDescription(product.description)}</p>
+            <p>Category: ${product.category}</p>
+            <p>Price: ₹${product.price}</p>
+          </div>
+        `;
+        productList.appendChild(item);
+      });
+
+      pageNumberDisplay.textContent = `Page ${currentPage}`;
+      prevPageButton.disabled = currentPage === 1;
+      nextPageButton.disabled = currentPage * itemsPerPage >= filteredProducts.length;
+    }
+
+    function filterProducts() {
+      const selectedCategory = categoryFilter.value;
+      const selectedPrice = priceFilter.value;
+
+      filteredProducts = products.filter(product => {
+        let matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+        let matchesPrice =
+          selectedPrice === 'all' ||
+          (selectedPrice === 'low' && product.price < 50) ||
+          (selectedPrice === 'medium' && product.price >= 50 && product.price <= 150) ||
+          (selectedPrice === 'high' && product.price > 150);
+        return matchesCategory && matchesPrice;
+      });
+
+      currentPage = 1;
+      updateProductList();
+    }
+
+    // Event Listeners
+    prevPageButton.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updateProductList();
+      }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+      if (currentPage * itemsPerPage < filteredProducts.length) {
+        currentPage++;
+        updateProductList();
+      }
+    });
+
+    categoryFilter.addEventListener('change', filterProducts);
+    priceFilter.addEventListener('change', filterProducts);
+
+    // Initial Display
+    updateProductList();
+  </script>
+
+</body>
+</html>

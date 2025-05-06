@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Registration - Naari-E-Haath</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .suggestions {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5 mb-5">
+  <h2>Seller Registration</h2>
+  <form id="sellerForm" action="/api/registerSeller" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" name="phone" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select class="form-select" id="category" name="category" required>
+        <option value="">Choose...</option>
+        <option>Clothing</option>
+        <option>Accessories</option>
+        <option>Handicrafts</option>
+        <option>Home Decor</option>
+        <option>Food Items</option>
+        <option>Beauty Products</option>
+        <option>Stationery</option>
+        <option>Art & Paintings</option>
+        <option>Others</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <select class="form-select" id="state" name="state" required>
+        <option value="">Choose...</option>
+        <option value="maharashtra">Maharashtra</option>
+        <option value="gujarat">Gujarat</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <select class="form-select" id="city" name="city" required></select>
+    </div>
+
+    <div class="mb-3">
+      <label for="brandName" class="form-label">Brand Name</label>
+      <input type="text" class="form-control" id="brandName" name="brandName">
+    </div>
+
+    <div class="mb-3">
+      <label for="businessType" class="form-label">Type of Business</label>
+      <select class="form-select" id="businessType" name="businessType" required>
+        <option value="">Choose...</option>
+        <option value="home">Home Based</option>
+        <option value="registered">Small Registered Business</option>
+        <option value="ngo">Self Help Group / NGO</option>
+        <option value="food">Food</option>
+      </select>
+    </div>
+
+    <div class="mb-3 d-none" id="licenseField">
+      <label for="license" class="form-label" id="licenseLabel">License</label>
+      <input type="text" class="form-control" id="license" name="license">
+    </div>
+
+    <div class="mb-3">
+      <label for="productDescription" class="form-label">Product Description</label>
+      <textarea class="form-control" id="productDescription" name="productDescription" rows="4" placeholder="Describe your product here..." required></textarea>
+      <div class="suggestions" id="keywordSuggestions">Please use the best keywords to describe the product.</div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="termsCheck" required>
+      <label class="form-check-label" for="termsCheck">I Agree to <a href="terms_and_conditions.html">Terms and Conditions</a></label>
+    </div>
+
+    <button type="button" class="btn btn-secondary me-2" onclick="previewForm()">Preview</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+  const cityData = {
+    maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Solapur", "Thane", "Kolhapur"],
+    gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Gandhinagar"]
+  };
+
+  document.getElementById("state").addEventListener("change", function () {
+    const state = this.value;
+    const citySelect = document.getElementById("city");
+    citySelect.innerHTML = "";
+    if (cityData[state]) {
+      cityData[state].forEach(city => {
+        const option = document.createElement("option");
+        option.value = city;
+        option.text = city;
+        citySelect.appendChild(option);
+      });
+    }
+  });
+
+  document.getElementById("businessType").addEventListener("change", function () {
+    const licenseField = document.getElementById("licenseField");
+    const licenseLabel = document.getElementById("licenseLabel");
+    const type = this.value;
+
+    if (type === "registered") {
+      licenseField.classList.remove("d-none");
+      licenseLabel.textContent = "Trade License Number";
+    } else if (type === "food") {
+      licenseField.classList.remove("d-none");
+      licenseLabel.textContent = "FSSAI License Number";
+    } else {
+      licenseField.classList.add("d-none");
+    }
+  });
+
+  document.getElementById("productDescription").addEventListener("input", function () {
+    const input = this.value.toLowerCase();
+    const suggestions = ["handmade", "eco-friendly", "organic", "women-made", "local", "sustainable", "artisan"];
+    const matches = suggestions.filter(word => word.includes(input)).slice(0, 3);
+    document.getElementById("keywordSuggestions").textContent =
+      matches.length > 0 ? "Suggested keywords: " + matches.join(", ") : "Please use the best keywords to describe the product.";
+  });
+
+  function previewForm() {
+    alert("This is a preview of the form data. (Feature to be expanded)");
+  }
+
+  document.getElementById("sellerForm").addEventListener("submit", function (e) {
+    if (!document.getElementById("termsCheck").checked) {
+      alert("You must agree to the Terms and Conditions before submitting.");
+      e.preventDefault();
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

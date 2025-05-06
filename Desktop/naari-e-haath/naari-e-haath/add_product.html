@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add A Product - Naari-E-Haath</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .suggestions {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5 mb-5">
+  <h2>Add A Product</h2>
+  <form id="productForm">
+    <div class="mb-3">
+      <label for="uniqueId" class="form-label">Unique Seller ID</label>
+      <input type="text" class="form-control" id="uniqueId" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="brandName" class="form-label">Name of the Brand</label>
+      <input type="text" class="form-control" id="brandName" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name</label>
+      <input type="text" class="form-control" id="productName" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="productDescription" class="form-label">Product Description</label>
+      <textarea class="form-control" id="productDescription" rows="4" placeholder="Describe your product here..." required></textarea>
+      <div class="suggestions" id="keywordSuggestions">Please use the best keywords to describe the product.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select class="form-select" id="category" required>
+        <option value="">Choose...</option>
+        <option>Clothing</option>
+        <option>Accessories</option>
+        <option>Handicrafts</option>
+        <option>Home Decor</option>
+        <option>Food Items</option>
+        <option>Beauty Products</option>
+        <option>Stationery</option>
+        <option>Art & Paintings</option>
+        <option>Others</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price (₹)</label>
+      <input type="number" class="form-control" id="price" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <select class="form-select" id="state" required>
+        <option value="">Choose...</option>
+        <option value="maharashtra">Maharashtra</option>
+        <option value="gujarat">Gujarat</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <select class="form-select" id="city" required></select>
+    </div>
+
+    <div class="mb-3">
+      <label for="productImages" class="form-label">Product Images (Max 5)</label>
+      <input class="form-control" type="file" id="productImages" accept="image/*" multiple required>
+      <small class="form-text text-muted">Upload up to 5 images only.</small>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="termsCheck" required>
+      <label class="form-check-label" for="termsCheck">I Agree to <a href="terms_and_conditions.html">Terms and Conditions</a></label>
+    </div>
+
+    <button type="button" class="btn btn-secondary me-2" onclick="previewForm()">Preview</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+  const cityData = {
+    maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Solapur", "Thane", "Kolhapur"],
+    gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Gandhinagar"]
+  };
+
+  document.getElementById("state").addEventListener("change", function () {
+    const state = this.value;
+    const citySelect = document.getElementById("city");
+    citySelect.innerHTML = "";
+    if (cityData[state]) {
+      cityData[state].forEach(city => {
+        const option = document.createElement("option");
+        option.value = city;
+        option.text = city;
+        citySelect.appendChild(option);
+      });
+    }
+  });
+
+  document.getElementById("productDescription").addEventListener("input", function () {
+    const input = this.value.toLowerCase();
+    const suggestions = ["handmade", "eco-friendly", "organic", "women-made", "local", "sustainable", "artisan"];
+    const matches = suggestions.filter(word => word.includes(input)).slice(0, 3);
+    document.getElementById("keywordSuggestions").textContent =
+      matches.length > 0 ? "Suggested keywords: " + matches.join(", ") : "Please use the best keywords to describe the product.";
+  });
+
+  function previewForm() {
+    alert("This is a preview of the product form. (Feature to be expanded)");
+  }
+
+  document.getElementById("productForm").addEventListener("submit", function (e) {
+    if (!document.getElementById("termsCheck").checked) {
+      alert("You must agree to the Terms and Conditions before submitting.");
+      e.preventDefault();
+    } else {
+      alert("Product submitted successfully!");
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
